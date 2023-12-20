@@ -1,0 +1,11 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    var user = Session["AdminLoginUser"] as E_Commerce.Core.Model.Entity.User;
+}
+
+<h2>Welcome @user.LastName Admin</h2>
+
+<ul>
+    <li> <a href="/Admin/Users"> Users Management </a></li>
+</ul>
