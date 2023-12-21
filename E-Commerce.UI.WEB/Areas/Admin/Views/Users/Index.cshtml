@@ -7,99 +7,45 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-success" })
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.LastName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Email)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Telephone)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Password)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TCKN)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.WalletAddress)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.IsActive)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.IsAdmin)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CreatedDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CreateUserId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.UpdateDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.UpdateUserId)
-        </th>
-        <th></th>
-    </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LastName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Email)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Telephone)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Password)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TCKN)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.WalletAddress)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.IsActive)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.IsAdmin)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CreatedDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CreateUserId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UpdateDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UpdateUserId)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
-        </td>
-    </tr>
-}
 
-</table>
+<div class="card">
+    <div class="card-body">
+        <div id="table-default" class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th><button class="table-sort" data-sort="sort-@Html.DisplayNameFor(model => model.Name)"> @Html.DisplayNameFor(model => model.Name) </button></th>
+                        <th><button class="table-sort" data-sort="sort-@Html.DisplayNameFor(model => model.Email)"> @Html.DisplayNameFor(model => model.Email)</button></th>
+                        <th><button class="table-sort" data-sort="sort-@Html.DisplayNameFor(model => model.WalletAddress)"> @Html.DisplayNameFor(model => model.WalletAddress)</button></th>
+                        <th><button class="table-sort" data-sort="sort-@Html.DisplayNameFor(model => model.IsActive)"> @Html.DisplayNameFor(model => model.IsActive)</button></th>
+                        <th><button class="table-sort" data-sort="sort-@Html.DisplayNameFor(model => model.IsAdmin)"> @Html.DisplayNameFor(model => model.IsAdmin)</button></th>
+                        <th><button class="table-sort" >Action</button></th>
+
+                    </tr>
+                </thead>
+                <tbody class="table-tbody">
+
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td class="sort-@Html.DisplayNameFor(model => model.Name)">@Html.DisplayFor(modelItem => item.Name)</td>
+                            <td class="sort-@Html.DisplayNameFor(model => model.Email)">@Html.DisplayFor(modelItem => item.Email)</td>
+                            <td class="sort-@Html.DisplayNameFor(model => model.WalletAddress)">@Html.DisplayFor(modelItem => item.WalletAddress)</td>
+                            <td class="sort-@Html.DisplayNameFor(model => model.IsActive)">@Html.DisplayFor(modelItem => item.IsActive)</td>
+                            <td class="sort-@Html.DisplayNameFor(model => model.IsAdmin)">@Html.DisplayFor(modelItem => item.IsAdmin)</td>
+                            <td>
+                                @Html.ActionLink("Edit", "Edit", new { id = item.ID } , new { @class = "btn btn-info" }) |
+                                @Html.ActionLink("Details", "Details", new { id = item.ID }, new { @class = "btn btn-primary" }) |
+                                @Html.ActionLink("Delete", "Delete", new { id = item.ID }, new { @class = "btn btn-danger" })
+                            </td>
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
