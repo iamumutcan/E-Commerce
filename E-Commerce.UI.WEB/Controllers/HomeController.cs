@@ -2,9 +2,7 @@
 using E_Commerce.Core.Model.Entity;
 using E_Commerce.UI.WEB.Controllers.Base;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace E_Commerce.UI.WEB.Controllers
@@ -16,13 +14,13 @@ namespace E_Commerce.UI.WEB.Controllers
         // GET: Home
         public ActionResult Index()
         {
-            var data=db.Products.OrderByDescending(x => x.CreatedDate).Take(5).ToList();
+            var data = db.Products.OrderByDescending(x => x.CreatedDate).Take(5).ToList();
             return View(data);
         }
-        
+
         public PartialViewResult GetMenu()
         {
-            var menus=db.Categories.Where(x=>x.ParentID==0).ToList();
+            var menus = db.Categories.Where(x => x.ParentID == 0).ToList();
             return PartialView(menus);
         }
 
@@ -31,7 +29,8 @@ namespace E_Commerce.UI.WEB.Controllers
 
         [HttpPost]
         [Route("UserLogin")]
-        public ActionResult Login(string Email,string Password) {
+        public ActionResult Login(string Email, string Password)
+        {
             var data = db.Users.Where(x => x.Email == Email && x.Password == Password && x.IsActive == true && x.IsAdmin == false).ToList();
             if (data.Count() > 0)
             {

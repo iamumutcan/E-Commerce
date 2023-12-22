@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace E_Commerce.Core.Model.Entity
+﻿namespace E_Commerce.Core.Model.Entity
 {
-    public class UserAddress:EntityBase
+    public class UserAddress : EntityBase
     {
         public int UserID { get; set; }
         public User User { get; set; }

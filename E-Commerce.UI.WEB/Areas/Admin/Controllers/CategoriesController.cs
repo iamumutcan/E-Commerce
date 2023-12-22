@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
+﻿using E_Commerce.Core.Model;
+using E_Commerce.Core.Model.Entity;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
-using E_Commerce.Core.Model;
-using E_Commerce.Core.Model.Entity;
 
 namespace E_Commerce.UI.WEB.Areas.Admin.Controllers
 {

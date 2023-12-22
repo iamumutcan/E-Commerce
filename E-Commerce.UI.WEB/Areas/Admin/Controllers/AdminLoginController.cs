@@ -1,15 +1,12 @@
 ﻿using E_Commerce.Core.Model;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace E_Commerce.UI.WEB.Areas.Admin.Controllers
 {
     public class AdminLoginController : Controller
     {
-        AppDbContext db=new AppDbContext();
+        AppDbContext db = new AppDbContext();
         // GET: Admin/AdminLogin
         public ActionResult Index()
         {
@@ -19,9 +16,9 @@ namespace E_Commerce.UI.WEB.Areas.Admin.Controllers
         public ActionResult Index(string Email, string Password)
         {
             var data = db.Users.Where(x => x.Email == Email && x.Password == Password && x.IsActive == true && x.IsAdmin == true).ToList();
-            if(data.Count()>0)
+            if (data.Count() > 0)
             {
-                Session["AdminLoginUser"]=data.FirstOrDefault();
+                Session["AdminLoginUser"] = data.FirstOrDefault();
                 return Redirect("/admin");
             }
             else { return View(); }
