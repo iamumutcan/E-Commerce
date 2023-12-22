@@ -3,7 +3,11 @@
 
 @{
     ViewBag.Title = "Index";
+    var category = (E_Commerce.Core.Model.Entity.Category)ViewBag.category;
 }
+
+<h2>@category.Name</h2>
+
 
 @{
     foreach (var item in Model)
