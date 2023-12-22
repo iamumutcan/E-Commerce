@@ -8,7 +8,7 @@ namespace E_Commerce.Core.Model.Entity
 {
     public class Product:EntityBase
     {
-        public int Name {  get; set; }
+        public string Name {  get; set; }
         public int CategoryID { get; set; }
         public Category Category { get; set; }
         public string Brand { get; set; }

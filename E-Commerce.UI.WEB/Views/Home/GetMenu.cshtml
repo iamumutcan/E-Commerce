@@ -1,0 +1,7 @@
+﻿@model IEnumerable<E_Commerce.Core.Model.Entity.Category>
+@{ 
+    foreach(var item in Model)
+     {
+        <li class="nav-item"><a class="nav-link" href="#">@item.Name</a></li>
+     }
+}
