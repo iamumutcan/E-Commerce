@@ -11,6 +11,12 @@ namespace E_Commerce.UI.WEB.Controllers.Base
         public User LoginUserEntity { get; private set; }
         protected override void Initialize(RequestContext requestContext)
         {
+            if (requestContext.HttpContext.Session["LoginUserId"] != null)
+            {
+                IsLogin = true;
+                LoginUserId = (int)requestContext.HttpContext.Session["LoginUserId"];
+                LoginUserEntity = (E_Commerce.Core.Model.Entity.User)requestContext.HttpContext.Session["LoginUser"];
+            }
             base.Initialize(requestContext);
         }
     }

@@ -14,6 +14,7 @@ namespace E_Commerce.UI.WEB.Controllers
         // GET: Home
         public ActionResult Index()
         {
+            ViewBag.IsLogin = this.IsLogin;
             var data = db.Products.OrderByDescending(x => x.CreatedDate).Take(5).ToList();
             return View(data);
         }
@@ -34,6 +35,7 @@ namespace E_Commerce.UI.WEB.Controllers
             var data = db.Users.Where(x => x.Email == Email && x.Password == Password && x.IsActive == true && x.IsAdmin == false).ToList();
             if (data.Count() > 0)
             {
+                Session["LoginUserId"] = data.FirstOrDefault().ID;
                 Session["LoginUser"] = data.FirstOrDefault();
                 return Redirect("/");
             }

@@ -3,6 +3,7 @@
 
 @{
     ViewBag.Title = "Index";
+    var Islogin = (bool)ViewBag.IsLogin;
 }
 
 @{
@@ -17,9 +18,38 @@
                     <p class="card-text"> <b>  @item.Price.ToString("$ ##,##") </b></p>
 
                     <a href="/product/@Regex.Replace(item.Name.ToLower(), @"[^a-z0-9]", "-")/@item.ID" class="btn btn-primary">Details</a>
-                    <a href="#" class="btn btn-info">Add To Cart</a>
+                    @{if (Islogin)
+                        {
+                            <a href="#" class="btn btn-info addBasket">Add To Cart</a>
+                        }
+                    }
                 </div>
             </div>
         </div>
     }
+}
+<div id="jqueryModal" title="Thanks">
+    Your product has been added to the cart
+</div>
+@section script{
+    <script>
+        $(document).ready(function () {
+            $("#jqueryModal").dialog({
+                autoOpen: false,
+                show: {
+                    effect: "blind",
+                    duration: 1000
+                },
+                hide: {
+                    effect: "blind",
+                    duration: 1000
+                }
+            });
+
+            $(".addBasket").on("click", function () {
+                $("#jqueryModal").dialog("open");
+                return false;
+            });
+        });
+    </script>
 }
