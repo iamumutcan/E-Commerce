@@ -20,7 +20,7 @@
                     <a href="/product/@Regex.Replace(item.Name.ToLower(), @"[^a-z0-9]", "-")/@item.ID" class="btn btn-primary">Details</a>
                     @{if (Islogin)
                         {
-                            <a href="#" class="btn btn-info addBasket">Add To Cart</a>
+                            <a href="#" data-pID="@item.ID" class="btn btn-info addBasket">Add To Cart</a>
                         }
                     }
                 </div>
@@ -47,7 +47,11 @@
             });
 
             $(".addBasket").on("click", function () {
-                $("#jqueryModal").dialog("open");
+                var pid = $(this).attr("data-pID");
+                $.post("Basket/AddItemToCart?productID=" + pid+"&quantity=1", function (data) {
+                    $("#jqueryModal").dialog("open");
+
+                })
                 return false;
             });
         });

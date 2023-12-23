@@ -1388,6 +1388,7 @@
     <Content Include="Views\Home\Register.cshtml" />
     <Content Include="Views\Product\Detail.cshtml" />
     <Content Include="Views\Category\Index.cshtml" />
+    <Content Include="Views\Basket\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -1399,7 +1400,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Models\" />
-    <Folder Include="Views\Basket\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\E-Commerce.Core.Model\E-Commerce.Core.Model.csproj">

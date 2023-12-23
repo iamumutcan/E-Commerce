@@ -13,9 +13,19 @@ namespace E_Commerce.UI.WEB.Controllers
         AppDbContext db = new AppDbContext();
 
         // GET: Basket
+        [Route("Basket")]
         public ActionResult Index()
         {
-            return View();
+            var data = db.Baskets.Include("Product").Where(x => x.UserID == LoginUserId).ToList();
+
+            return View(data);
+        }
+        public ActionResult Delete(int id)
+        {
+            var deleteItem=db.Baskets.Where(x=>x.ID==id).FirstOrDefault();
+            db.Baskets.Remove(deleteItem);
+            db.SaveChanges();
+            return RedirectToAction("Index");
         }
         [HttpPost]
         public JsonResult AddItemToCart(int productID,int quantity)
