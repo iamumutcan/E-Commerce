@@ -1392,6 +1392,9 @@
     <Content Include="Views\Basket\Index.cshtml" />
     <Content Include="Views\Order\AddressList.cshtml" />
     <Content Include="Views\Order\CreateUserAddress.cshtml" />
+    <Content Include="Views\Order\CreateOrder.cshtml" />
+    <Content Include="Views\Order\Detail.cshtml" />
+    <Content Include="Views\Order\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

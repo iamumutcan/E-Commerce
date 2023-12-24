@@ -1,0 +1,66 @@
+﻿@model E_Commerce.Core.Model.Entity.Order
+@{
+    ViewBag.Title = "Detail";
+}
+
+<h1 class="text-center mb-4">Ödeme Detayları</h1>
+<hr />
+
+<h2>Your order<b>@Model.ID  </b> status: @Model.Status.Name</h2>
+
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+        <h5>Alışveriş Detayları</h5>
+        <hr>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Product Name</th>
+                    <th>Quantity</th>
+                    <th>Discount</th>
+                    <th>Tax</th>
+                    <th>Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    foreach (var item in Model.OrderProducts)
+                    {
+                        <tr>
+                            <td> @item.Product.Name </td>
+                            <td> @item.Quantity </td>
+                            <td> @item.Product.Discount </td>
+                            <td> @item.Product.Tax </td>
+                            <td> @item.Product.Price </td>
+                        </tr>
+                    }
+                }
+
+            </tbody>
+        </table>
+
+        <hr>
+        <div class="row">
+            <div class="col-6">Total</div>
+            <div class="col-6 text-right">$ @Model.TotalProductPrice.ToString("##,##") </div>
+        </div>
+        <div class="row">
+            <div class="col-6">TAX</div>
+            <div class="col-6 text-right">$ @Model.TotalTaxPrice.ToString("##,##") </div>
+        </div>
+        <div class="row">
+            <div class="col-6">Dicount</div>
+            <div class="col-6 text-right">$ @Model.TotalDiscount.ToString("##,##") </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-6"><strong>Total Price</strong></div>
+            <div class="col-6 text-right"><strong>$ @Model.TotalPrice.ToString("##,##")</strong></div>
+        </div>
+        <hr>
+        <form>
+            <!-- Ödeme bilgileri formu -->
+            <!-- ... -->
+            <a href="/Order/Pay?id=@Model.ID" class="btn btn-primary btn-block">Go Pay</a>
+        </form>
+    </div>
