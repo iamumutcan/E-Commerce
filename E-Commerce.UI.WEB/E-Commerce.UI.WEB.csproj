@@ -1270,6 +1270,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
+    <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -1401,6 +1402,7 @@
     <Content Include="Views\Order\CreateOrder.cshtml" />
     <Content Include="Views\Order\Detail.cshtml" />
     <Content Include="Views\Order\Index.cshtml" />
+    <Content Include="Views\Test\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -1417,6 +1419,10 @@
     <ProjectReference Include="..\E-Commerce.Core.Model\E-Commerce.Core.Model.csproj">
       <Project>{ec50a6dc-4787-4cf3-988c-84ed2e1f6a93}</Project>
       <Name>E-Commerce.Core.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\E-Commerce.DataIntegration\E-Commerce.DataIntegration.csproj">
+      <Project>{e7f9c0b9-1300-44ea-b13c-5f02c74ce4a3}</Project>
+      <Name>E-Commerce.DataIntegration</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
