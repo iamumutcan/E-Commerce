@@ -1,5 +1,6 @@
 ﻿using E_Commerce.Core.Model;
 using E_Commerce.Core.Model.Entity;
+using System;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
@@ -7,7 +8,7 @@ using System.Web.Mvc;
 
 namespace E_Commerce.UI.WEB.Areas.Admin.Controllers
 {
-    public class UsersController : Controller
+    public class UsersController : AdminControllerBase
     {
         private AppDbContext db = new AppDbContext();
 
@@ -79,8 +80,11 @@ namespace E_Commerce.UI.WEB.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
+                user.UpdateDate = DateTime.Now;
+                user.UpdateUserId = AdminLoginUserId;
                 db.Entry(user).State = EntityState.Modified;
                 db.SaveChanges();
+
                 return RedirectToAction("Index");
             }
             return View(user);

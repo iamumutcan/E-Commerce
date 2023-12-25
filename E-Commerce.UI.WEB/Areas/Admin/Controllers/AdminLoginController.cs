@@ -19,6 +19,7 @@ namespace E_Commerce.UI.WEB.Areas.Admin.Controllers
             if (data.Count() > 0)
             {
                 Session["AdminLoginUser"] = data.FirstOrDefault();
+                Session["AdminLoginUserId"]= data.FirstOrDefault().ID;
                 return Redirect("/admin");
             }
             else { return View(); }

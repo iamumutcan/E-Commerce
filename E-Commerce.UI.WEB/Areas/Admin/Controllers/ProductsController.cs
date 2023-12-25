@@ -7,7 +7,7 @@ using System.Web.Mvc;
 
 namespace E_Commerce.UI.WEB.Areas.Admin.Controllers
 {
-    public class ProductsController : Controller
+    public class ProductsController : AdminControllerBase
     {
         private AppDbContext db = new AppDbContext();
 
