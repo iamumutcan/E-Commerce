@@ -32,10 +32,11 @@ namespace E_Commerce.UI.WEB.Controllers
         [Route("UserLogin")]
         public ActionResult Login(string Email, string Password)
         {
-            var data = db.Users.Where(x => x.Email == Email && x.Password == Password && x.IsActive == true && x.IsAdmin == false).ToList();
+            var data = db.Users.Where(x => x.Email == Email && x.Password == Password && x.IsActive == true).ToList();
             if (data.Count() > 0)
             {
                 Session["LoginUserId"] = data.FirstOrDefault().ID;
+                Session["LoginUserWallet"] = data.FirstOrDefault().WalletAddress;
                 Session["LoginUser"] = data.FirstOrDefault();
                 return Redirect("/");
             }

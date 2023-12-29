@@ -8,6 +8,7 @@ namespace E_Commerce.UI.WEB.Controllers.Base
     {
         public bool IsLogin { get; private set; }
         public int LoginUserId { get; private set; }
+        public string LoginUserWallet {  get; private set; }
         public User LoginUserEntity { get; private set; }
         protected override void Initialize(RequestContext requestContext)
         {
@@ -15,8 +16,10 @@ namespace E_Commerce.UI.WEB.Controllers.Base
             {
                 IsLogin = true;
                 LoginUserId = (int)requestContext.HttpContext.Session["LoginUserId"];
+                LoginUserWallet = (string)requestContext.HttpContext.Session["LoginUserWallet"];
                 LoginUserEntity = (E_Commerce.Core.Model.Entity.User)requestContext.HttpContext.Session["LoginUser"];
             }
+
             base.Initialize(requestContext);
         }
     }

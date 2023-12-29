@@ -28,8 +28,13 @@ namespace E_Commerce.DataIntegration
     public class TransactionBlock
     {
         public string fromAddress { get; set; }
+        public string fromAddressPrivateKey { get; set; }
         public string toAddress { get; set; }
         public decimal amount { get; set; }
+    }
+    public class WalletKeys
+    {
+
     }
 
 

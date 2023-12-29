@@ -70,6 +70,10 @@
     <Compile Include="Migrations\202312221235010_productfix.designer.cs">
       <DependentUpon>202312221235010_productfix.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202312282049256_update-user.cs" />
+    <Compile Include="Migrations\202312282049256_update-user.designer.cs">
+      <DependentUpon>202312282049256_update-user.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -83,6 +87,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202312221235010_productfix.resx">
       <DependentUpon>202312221235010_productfix.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202312282049256_update-user.resx">
+      <DependentUpon>202312282049256_update-user.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

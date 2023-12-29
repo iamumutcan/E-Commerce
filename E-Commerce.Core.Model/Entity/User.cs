@@ -10,6 +10,7 @@ namespace E_Commerce.Core.Model.Entity
         public string Telephone { get; set; }
         public string Password { get; set; }
         public string TCKN { get; set; }
+        public string PrivateKey { get; set; }
         public string WalletAddress { get; set; }
         public bool IsActive { get; set; }
         public bool IsAdmin { get; set; }
