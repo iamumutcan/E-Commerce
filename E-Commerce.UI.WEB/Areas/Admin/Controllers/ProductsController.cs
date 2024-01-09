@@ -1,6 +1,8 @@
 ﻿using E_Commerce.Core.Model;
 using E_Commerce.Core.Model.Entity;
+using System;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
@@ -44,11 +46,21 @@ namespace E_Commerce.UI.WEB.Areas.Admin.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Name,CategoryID,Brand,Model,ImageUrl,Description,Price,Tax,Discount,Stock,IsActive,CreatedDate,CreateUserId,UpdateDate,UpdateUserId")] Product product)
+        public ActionResult Create(Product product)
         {
             if (ModelState.IsValid)
             {
+                if (Request.Files.Count > 0)
+                {
+                    string fileextension = Path.GetExtension(Request.Files[0].FileName);
+                    string randomName = Guid.NewGuid().ToString(); 
+                    string folderPath = Server.MapPath("~/Themefiles/assets/images/product/");
+                    string filepath = Path.Combine(folderPath, randomName + fileextension);
+                    Request.Files[0].SaveAs(filepath);
+                    product.ImageUrl = "/Themefiles/assets/images/product/" + randomName + fileextension;
+                }
+                product.CreateUserId = AdminLoginUserId;
+                product.CreatedDate = System.DateTime.Now;
                 db.Products.Add(product);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -78,11 +90,21 @@ namespace E_Commerce.UI.WEB.Areas.Admin.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Name,CategoryID,Brand,Model,ImageUrl,Description,Price,Tax,Discount,Stock,IsActive,CreatedDate,CreateUserId,UpdateDate,UpdateUserId")] Product product)
+        public ActionResult Edit(Product product)
         {
             if (ModelState.IsValid)
             {
+                if (Request.Files.Count > 0)
+                {
+                    string fileextension = Path.GetExtension(Request.Files[0].FileName);
+                    string randomName = Guid.NewGuid().ToString();
+                    string folderPath = Server.MapPath("~/Themefiles/assets/images/product/");
+                    string filepath = Path.Combine(folderPath, randomName + fileextension);
+                    Request.Files[0].SaveAs(filepath);
+                    product.ImageUrl = "/Themefiles/assets/images/product/" + randomName + fileextension;
+                }
+                product.UpdateDate = DateTime.Now;
+                product.UpdateUserId = AdminLoginUserId;
                 db.Entry(product).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");

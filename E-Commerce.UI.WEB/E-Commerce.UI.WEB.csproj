@@ -1557,6 +1557,7 @@
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Models\" />
     <Folder Include="Themefiles\assets\images\homepage-one\blog-img\" />
+    <Folder Include="Themefiles\assets\images\product\" />
     <Folder Include="Views\UserLoginControllerBase\" />
   </ItemGroup>
   <ItemGroup>
