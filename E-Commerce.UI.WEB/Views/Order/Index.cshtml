@@ -4,60 +4,80 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Status.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.UserAddress.Title)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TotalProductPrice)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TotalDiscount)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TotalTaxPrice)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TotalPrice)
-        </th>
+<section class="user-profile footer-padding">
+    <div class="container">
+        <div class="user-profile-section">
 
-        <th></th>
-    </tr>
+            <div class="user-dashboard">
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Status.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UserAddress.Title)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TotalProductPrice)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TotalDiscount)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TotalTaxPrice)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TotalPrice)
-        </td>
+                @Html.Partial("_UserDashboardMenu")
 
-        <td>
-            @Html.ActionLink("Details", "Detail", new { id=item.ID }) |
-        </td>
-    </tr>
-}
+                <!-- nav-content -->
+                <div class="tab-content nav-content" id="v-pills-tabContent" style="flex: 1 0%;">
+                    <div class="tab-pane fade active show" id="v-pills-ticket" role="tabpanel" aria-labelledby="v-pills-ticket-tab" tabindex="0">
+                        <div class="support-ticket">
 
-</table>
+                            <div class="ticket-section">
+                                <table>
+                                    <tbody>
+                                        <tr class="table-row table-top-row">
+
+                                            <td class="table-wrapper">
+                                                <div class="table-wrapper-center">
+                                                    <h5 class="table-heading">STATUS</h5>
+                                                </div>
+                                            </td>
+                                            <td class="table-wrapper">
+                                                <div class="table-wrapper-center">
+                                                    <h5 class="table-heading">TIME</h5>
+                                                </div>
+                                            </td>
+                                            <td class="table-wrapper">
+                                                <div class="table-wrapper-center">
+                                                    <h5 class="table-heading">TotalPrice</h5>
+                                                </div>
+                                            </td>
+                                            <td class="table-wrapper">
+                                                <div class="table-wrapper-center">
+                                                    <h5 class="table-heading">Address Title</h5>
+                                                </div>
+                                            </td>
+                                            <td class="table-wrapper">
+                                                <div class="table-wrapper-center">
+                                                    <h5 class="table-heading"> </h5>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        @foreach (var item in Model)
+                                        {
+                                            <tr class="table-row ticket-row">
+                                                <td class="table-wrapper">
+                                                    <p class="ticket-info"> @Html.DisplayFor(modelItem => item.Status.Name)</p>
+                                                </td>
+                                                <td class="table-wrapper">
+                                                    <p class="ticket-info">@Html.DisplayFor(modelItem => item.TotalPrice)</p>
+                                                </td>
+                                                <td class="table-wrapper">
+                                                    <p class="ticket-info"> @Html.DisplayFor(modelItem => item.TotalPrice)</p>
+                                                </td>
+                                                <td class="table-wrapper">
+                                                    <p class="ticket-info"> @Html.DisplayFor(modelItem => item.UserAddress.Title)</p>
+                                                </td>
+                                                <td class="table-wrapper">
+                                                    <p class="ticket-info">  @Html.ActionLink("Details", "Detail", new { id = item.ID })</p>
+                                                </td>
+                                            </tr>
+                                        }
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>

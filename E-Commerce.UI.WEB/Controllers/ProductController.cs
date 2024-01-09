@@ -9,11 +9,12 @@ namespace E_Commerce.UI.WEB.Controllers
     {
         AppDbContext db = new AppDbContext();
         // GET: Product
+
         [Route("Product/{title}/{id}")]
         public ActionResult Detail(int id)
         {
-            var product = db.Products.Where(x => x.ID == id).FirstOrDefault();
-
+            ViewBag.IsLogin = this.IsLogin;
+            var product = db.Products.Include("Category").Where(x => x.ID == id).FirstOrDefault();
             return View(product);
         }
     }

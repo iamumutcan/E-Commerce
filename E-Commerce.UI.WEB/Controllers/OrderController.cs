@@ -10,13 +10,15 @@ using System.Web.UI.WebControls;
 
 namespace E_Commerce.UI.WEB.Controllers
 {
+    [UserLoginFilter]
     public class OrderController : UserControllerBase
     {
         AppDbContext db= new AppDbContext();
         // GET: Order
-        [Route("Checkout")]
+        [Route("SelectAddres")]
         public ActionResult AddressList()
         {
+
             var data =db.UsersAddress.Where(x=>x.UserID == LoginUserId).ToList();
             return View(data);
         }
@@ -48,11 +50,10 @@ namespace E_Commerce.UI.WEB.Controllers
             order.UserAddressID= id;
             order.UserID = LoginUserId;
             order.StatusID = 4;
-            order.TotalProductPrice = basket.Sum(x => x.Product.Price);
-            order.TotalTaxPrice = basket.Sum(x => x.Product.Tax);
-            order.TotalDiscount = basket.Sum(x => x.Product.Discount);
-            order.TotalTaxPrice = basket.Sum(x => x.Product.Tax);
-            order.TotalPrice = order.TotalProductPrice + order.TotalTaxPrice;
+            order.TotalProductPrice = basket.Sum(x => x.Product.Price * x.Quantity);
+            order.TotalTaxPrice = basket.Sum(x => x.Product.Tax * x.Quantity);
+            order.TotalDiscount = basket.Sum(x => x.Product.Discount * x.Quantity);
+            order.TotalPrice = order.TotalProductPrice + order.TotalTaxPrice - order.TotalDiscount;
             order.OrderProducts = new List<OrderProduct>();
             foreach(var item in basket)
             {
@@ -71,7 +72,7 @@ namespace E_Commerce.UI.WEB.Controllers
             var lastOrder = db.Orders.Where(x => x.UserID == LoginUserId)
                                       .OrderByDescending(x => x.ID)
                                       .FirstOrDefault();
-            return RedirectToAction("Detail",new {id= lastOrder .ID});
+            return RedirectToAction("Chekout", new {id= lastOrder .ID});
         }
 
         public ActionResult Detail(int id)
@@ -82,23 +83,22 @@ namespace E_Commerce.UI.WEB.Controllers
                             Where(x=> x.ID==id).FirstOrDefault();
             return View(data);
         }
+        public ActionResult Chekout(int id)
+        {
+            var data = db.Orders.Include("OrderProducts").
+                                Include("OrderProducts.Product").
+                                Include("Status").
+                                Where(x => x.ID == id).FirstOrDefault();
+            return View(data);
+        }
 
         [Route("MyOrder")]
         public ActionResult Index()
         {
-            var data = db.Orders.Where(x => x.UserID == LoginUserId).ToList();
+            var data = db.Orders.Include("Status").Include("User").Include("UserAddress").Where(x => x.UserID == LoginUserId).ToList();
             return View(data);
         }
 
-        public ActionResult Pay(int id)
-        {
-            var order=db.Orders.Where(x=>x.ID==id).FirstOrDefault();
-            // detailed payment controls
-            order.StatusID = 11;
-            db.SaveChanges();
-            return RedirectToAction("Detail", new { id = order.ID });
-
-
-        }
+  
     }
 }

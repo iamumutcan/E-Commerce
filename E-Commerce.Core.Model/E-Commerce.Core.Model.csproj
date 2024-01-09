@@ -74,6 +74,14 @@
     <Compile Include="Migrations\202312282049256_update-user.designer.cs">
       <DependentUpon>202312282049256_update-user.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202312302030492_updateAddress.cs" />
+    <Compile Include="Migrations\202312302030492_updateAddress.designer.cs">
+      <DependentUpon>202312302030492_updateAddress.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202312311219500_update-product.cs" />
+    <Compile Include="Migrations\202312311219500_update-product.designer.cs">
+      <DependentUpon>202312311219500_update-product.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -91,6 +99,18 @@
     <EmbeddedResource Include="Migrations\202312282049256_update-user.resx">
       <DependentUpon>202312282049256_update-user.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202312302030492_updateAddress.resx">
+      <DependentUpon>202312302030492_updateAddress.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202312311219500_update-product.resx">
+      <DependentUpon>202312311219500_update-product.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\E-Commerce.DataIntegration\E-Commerce.DataIntegration.csproj">
+      <Project>{E7F9C0B9-1300-44EA-B13C-5F02C74CE4A3}</Project>
+      <Name>E-Commerce.DataIntegration</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

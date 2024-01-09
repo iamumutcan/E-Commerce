@@ -10,6 +10,8 @@ namespace E_Commerce.DataIntegration.Blockchain
     public class BlockchainHandler
     {
         private readonly string _baseUrl = "http://localhost:5000/api/blockchain/";
+        public readonly string systemWalletAddres= "04b9c730bc86aa3b3234b1e47b20d2ceaa22c4cacb3c23e99f8b88415576942e754eb43f49cdd411cf260fc03f23cc312067301d114f04cb19b44e6960d51cef78";
+        private readonly string systemPrivateKey= "67bc8f25231231e64f5b8b1222fdf8a46ad3d68f77bd7fa9eda203be6bdd0928";
         public async Task<bool> AddTransactions(TransactionBlock tx)
         {
             string url = _baseUrl + "AddTransactions";

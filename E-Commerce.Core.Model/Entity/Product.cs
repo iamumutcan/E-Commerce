@@ -14,5 +14,21 @@
         public decimal Discount { get; set; }
         public int Stock { get; set; }
         public bool IsActive { get; set; }
+        public decimal TotalPrice
+        {
+            get
+            {
+                decimal totalPrice = Price + Tax - Discount;
+                return totalPrice;
+            }
+        }
+        public decimal TotalPriceWithoutDiscount
+        {
+            get
+            {
+                decimal totalPriceWithoutDiscount= Price + Tax;
+                return totalPriceWithoutDiscount;
+            }
+        }
     }
 }

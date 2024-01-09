@@ -1,36 +1,23 @@
 ﻿@model IEnumerable<E_Commerce.Core.Model.Entity.Category>
 @using System.Text.RegularExpressions;
 
-@{
-    foreach (var item in Model)
-    {
-        <li class="nav-item"><a class="nav-link" href="/Category/@Regex.Replace(item.Name.ToLower(), @"[^a-z0-9]", "-")/@item.ID">@item.Name</a></li>
+<ul class="category-list">
+    @{
+        foreach (var item in Model)
+        {
+            <li class="category-nav-item">
+                <a class="nav-link" href="/Category/@Regex.Replace(item.Name.ToLower(), @"[^a-z0-9]", "-")/@item.ID">
+                    <div class="dropdown-item">
+                        <div class="dropdown-list-item">
+                            <span class="dropdown-img"> </span>
+                            <span class="dropdown-text">
+                                @item.Name
+                            </span>
+                        </div>
+                        <div class="drop-down-list-icon"></div>
+                    </div>
+                </a>
+            </li>
+        }
     }
-    if (Session["LoginUser"] == null)
-    {
-        <li class="nav-item">
-            <a href="/UserLogin" class="btn btn-outline-primary my-2 my-sm-0">Login</a>
-        </li>
-        <li class="nav-item">
-            <a href="/UserRegister" class="btn btn-outline-success my-2 my-sm-0">Register</a>
-        </li>
-    }
-    else
-    {
-        var usr = Session["LoginUser"] as E_Commerce.Core.Model.Entity.User;
-        <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Hesabım
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                Welcome @usr.Name
-                <a class="dropdown-item" href="/Basket">My Cart</a>
-                <a class="dropdown-item" href="/MyOrder">My Order</a>
-                <a class="dropdown-item" href="#">Ayarlarım</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">Çıkış Yap</a>
-            </div>
-        </li>
-    }
-
-}
+</ul>

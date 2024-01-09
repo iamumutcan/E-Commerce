@@ -1,0 +1,39 @@
+﻿@{
+    ViewBag.Title = "Pay";
+
+}
+
+
+<!--------------- blog-tittle-section---------------->
+<section class="blog about-blog">
+    <div class="container">
+        <div class="blog-bradcrum">
+            <span><a href="index.html">Home</a></span>
+            <span class="devider">/</span>
+            <span><a href="#">Pay</a></span>
+        </div>
+        <div class="blog-heading about-heading">
+            <h1 class="heading">Pay</h1>
+        </div>
+    </div>
+</section>
+
+<section class="product privacy footer-padding">
+    <div class="container">
+        <div class="text-center">
+            @if (ViewBag.Result != null)
+            {
+                if ((bool)ViewBag.Result)
+                {
+                    <img src="~/Themefiles/assets/images/success.gif" />
+                }
+                else
+                {
+                    <img src="~/Themefiles/assets/images/error.gif" />
+                }
+            }
+            <h2>@ViewBag.PaymentMessage</h2>
+
+        </div>
+    </div>
+</section>

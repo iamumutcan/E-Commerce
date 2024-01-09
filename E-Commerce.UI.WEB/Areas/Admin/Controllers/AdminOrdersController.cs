@@ -18,6 +18,7 @@ namespace E_Commerce.UI.WEB.Areas.Admin.Controllers
         // GET: Admin/AdminOrders
         public ActionResult Index()
         {
+
             var orders = db.Orders.Include(o => o.Status).Include(o => o.User).Include(o => o.UserAddress);
             return View(orders.ToList());
         }
@@ -25,6 +26,7 @@ namespace E_Commerce.UI.WEB.Areas.Admin.Controllers
         // GET: Admin/AdminOrders/Details/5
         public ActionResult Details(int? id)
         {
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);

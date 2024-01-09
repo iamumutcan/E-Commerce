@@ -4,46 +4,77 @@
     ViewBag.Title = "AddressList";
 }
 
-<h2>Address List</h2>
-
+<!--------------- blog-tittle-section---------------->
+<section class="blog about-blog">
+    <div class="container">
+        <div class="blog-bradcrum">
+            <span><a href="index.html">Home</a></span>
+            <span class="devider">/</span>
+            <span><a href="#">Dashboard</a></span>
+        </div>
+        <div class="blog-heading about-heading">
+            <h1 class="heading">User Address List</h1>
+        </div>
+    </div>
+</section>
+<!--------------- blog-tittle-section-end---------------->
 <p>
     @Html.ActionLink("Add New Address", "CreateUserAddress")
 </p>
-<table class="table">
-    <tr>
-     
-        <th>
-            @Html.DisplayNameFor(model => model.Title)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.City)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Address)
-        </th>
-  
-        <th></th>
-    </tr>
 
-@foreach (var item in Model) {
-    <tr>
+<!---------------user-profile-section---------------->
+<section class="user-profile footer-padding">
+    <div class="container">
+        <div class="user-profile-section">
+            <div class="dashboard-heading ">
+                <h5 class="dashboard-title">Select Address </h5>
+            </div>
+            <div class="user-dashboard">
 
-        <td>
-            @Html.DisplayFor(modelItem => item.Title)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.City)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Address)
-        </td>
-        <td>
-            @Html.ActionLink("Select", "CreateOrder", new { id = item.ID }) |
-            @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id = item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.ID })
-        </td>
-    </tr>
-}
+                <!-- nav-content -->
+                <div class="tab-content nav-content" id="v-pills-tabContent" style="flex: 1 0%;">
+                    <div class="tab-pane nav-show active" id="v-pills-address" role="tabpanel"
+                         aria-labelledby="v-pills-address-tab" tabindex="5">
+                        <div class="profile-section address-section addresses ">
+                            <div class="row gy-md-0 g-5">
+                                @foreach (var item in Model)
+                                {
 
-</table>
+                                    <div class="col-md-6">
+                                        <div class="seller-info">
+                                            <h5 class="heading">@Html.DisplayFor(modelItem => item.Title) </h5>
+                                            <div class="info-list">
+                                                <div class="info-title">
+                                                    <p>Title:</p>
+                                                    <p>Country:</p>
+                                                    <p>City:</p>
+                                                    <p>Address:</p>
+                                                </div>
+                                                <div class="info-details">
+                                                    <p>@Html.DisplayFor(modelItem => item.Title)</p>
+                                                    <p> @Html.DisplayFor(modelItem => item.Country)</p>
+                                                    <p> @Html.DisplayFor(modelItem => item.City)</p>
+                                                    <p> @Html.DisplayFor(modelItem => item.Address)</p>
+                                                </div>
+                                                <div>
+                                                    @Html.ActionLink("Select", "CreateOrder", new { id = item.ID }) |
+                                                    @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                                                    @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                                                    @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                               
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--------------- user-profile-section-end --------------->

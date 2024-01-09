@@ -361,3 +361,6 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+
+E-Commerce.UI.WEB/Areas/Admin/AdminTheme/
+E-Commerce.UI.WEB/Themefiles/

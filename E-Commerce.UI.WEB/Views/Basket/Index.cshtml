@@ -2,45 +2,109 @@
 
 @{
     ViewBag.Title = "Index";
+
 }
 
-<h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Product.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.UserID)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Quantity)
-        </th>
-        <th></th>
-    </tr>
+<!--------------- blog-tittle-section---------------->
+<section class="blog about-blog">
+    <div class="container">
+        <div class="blog-bradcrum">
+            <span><a href="index.html">Home</a></span>
+            <span class="devider">/</span>
+            <span><a href="#">Cart</a></span>
+        </div>
+        <div class="blog-heading about-heading">
+            <h1 class="heading">Cart</h1>
+        </div>
+    </div>
+</section>
+<!--------------- blog-tittle-section-end---------------->
+<!--------------- cart-section---------------->
+<section class="product-cart product footer-padding">
+    <div class="container">
+        <div class="cart-section">
+            <table>
+                <tbody>
+                    <tr class="table-row table-top-row">
+                        <td class="table-wrapper wrapper-product">
+                            <h5 class="table-heading">PRODUCT</h5>
+                        </td>
+                        <td class="table-wrapper">
+                            <div class="table-wrapper-center">
+                                <h5 class="table-heading">PRICE</h5>
+                            </div>
+                        </td>
+                        <td class="table-wrapper">
+                            <div class="table-wrapper-center">
+                                <h5 class="table-heading">QUANTITY</h5>
+                            </div>
+                        </td>
+                        <td class="table-wrapper wrapper-total">
+                            <div class="table-wrapper-center">
+                                <h5 class="table-heading">TOTAL</h5>
+                            </div>
+                        </td>
+                        <td class="table-wrapper">
+                            <div class="table-wrapper-center">
+                                <h5 class="table-heading">ACTION</h5>
+                            </div>
+                        </td>
+                    </tr>
+                    @foreach (var item in Model)
+                    {
+                        decimal totalPrice = item.Quantity * item.Product.Price;
 
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Product.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UserID)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Quantity)
-            </td>
-
-            <td>
-                @Html.ActionLink("Delete", "Delete", new { id = item.ID })
-            </td>
-        </tr>
-    }
-
-</table>
-<a href="/Checkout" class="btn btn-primary btn-block">Satın Al</a>
+                        <tr class="table-row ticket-row">
+                            <td class="table-wrapper wrapper-product">
+                                <div class="wrapper">
+                                    <div class="wrapper-img">
+                                        <img src="./assets/images/homepage-one/product-img/product-img-1.webp"
+                                             alt="img">
+                                    </div>
+                                    <div class="wrapper-content">
+                                        <h5 class="heading"> @Html.DisplayFor(modelItem => item.Product.Name)</h5>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="table-wrapper">
+                                <div class="table-wrapper-center">
+                                    <h5 class="heading">@Html.DisplayFor(modelItem => item.Product.Price)</h5>
+                                </div>
+                            </td>
+                            <td class="table-wrapper">
+                                <div class="table-wrapper-center">
+                                    <div class="quantity">
+                                        <span class="minus">
+                                            @Html.ActionLink("-", "RemoveItemFromCart", new { id = item.ID })
+                                        </span>
+                                        <span class="number"> @Html.DisplayFor(modelItem => item.Quantity) </span>
+                                        <span class="plus">
+                                            @Html.ActionLink("+", "IncreasesProductQuantity", new { id = item.ID })
+                                        </span>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="table-wrapper wrapper-total">
+                                <div class="table-wrapper-center">
+                                    <h5 class="heading">@Html.DisplayFor(modelItem => totalPrice)</h5>
+                                </div>
+                            </td>
+                            <td class="table-wrapper">
+                                <div class="table-wrapper-center">
+                                    @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <div class="wishlist-btn cart-btn">
+            <a href="empty-cart.html" class="clean-btn">Clear Cart</a>
+            <a href="#" class="shop-btn update-btn">Update Cart</a>
+            <a href="/SelectAddres" class="shop-btn">Proceed to Checkout</a>
+        </div>
+    </div>
+</section>
+<!--------------- cart-section-end---------------->

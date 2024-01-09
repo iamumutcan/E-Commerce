@@ -1,69 +1,12 @@
-﻿@model E_Commerce.Core.Model.Entity.Order
+﻿
+@model E_Commerce.Core.Model.Entity.Order
 @{
-    ViewBag.Title = "Detail";
+    ViewBag.Title = "Chekout";
 }
 
 <h1 class="text-center mb-4">Ödeme Detayları</h1>
 <hr />
 
-<h2>Your order<b>@Model.ID  </b> status: @Model.Status.Name</h2>
-
-<div class="row">
-    <div class="col-md-8 offset-md-2">
-        <h5>Alışveriş Detayları</h5>
-        <hr>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Product Name</th>
-                    <th>Quantity</th>
-                    <th>Discount</th>
-                    <th>Tax</th>
-                    <th>Price</th>
-                </tr>
-            </thead>
-            <tbody>
-                @{
-                    foreach (var item in Model.OrderProducts)
-                    {
-                        <tr>
-                            <td> @item.Product.Name </td>
-                            <td> @item.Quantity </td>
-                            <td> @item.Product.TotalPrice </td>
-                            <td> @item.Product.Tax </td>
-                            <td> @item.Product.Price </td>
-                        </tr>
-                    }
-                }
-
-            </tbody>
-        </table>
-
-        <hr>
-        <div class="row">
-            <div class="col-6">Total</div>
-            <div class="col-6 text-right">$ @Model.TotalProductPrice.ToString("##,##") </div>
-        </div>
-        <div class="row">
-            <div class="col-6">TAX</div>
-            <div class="col-6 text-right">$ @Model.TotalTaxPrice.ToString("##,##") </div>
-        </div>
-        <div class="row">
-            <div class="col-6">Dicount</div>
-            <div class="col-6 text-right">$ @Model.TotalDiscount.ToString("##,##") </div>
-        </div>
-        <hr>
-        <div class="row">
-            <div class="col-6"><strong>Total Price</strong></div>
-            <div class="col-6 text-right"><strong>$ @Model.TotalPrice.ToString("##,##")</strong></div>
-        </div>
-        <hr>
-        <form>
-            <!-- Ödeme bilgileri formu -->
-            <!-- ... -->
-            <a href="/Order/Pay?id=@Model.ID" class="btn btn-primary btn-block">Go Pay</a>
-        </form>
-    </div>
     <!--------------- blog-tittle-section---------------->
     <section class="blog about-blog">
         <div class="container">
@@ -107,7 +50,7 @@
                                                             <p class="paragraph"> @item.Quantity  *  @item.Product.TotalPrice</p>
                                                         </div>
                                                         <div class="price">
-                                                            <h5 class="wrapper-heading">$ @totalPrice</h5>
+                                                            <h5 class="wrapper-heading">🪙 @totalPrice</h5>
                                                         </div>
                                                     </li>
                                                 }
@@ -116,10 +59,7 @@
                                         </ul>
                                     </div>
                                     <hr>
-                                    <div class="subtotal product-total">
-                                        <h5 class="wrapper-heading">SUBTOTAL</h5>
-                                        <h5 class="wrapper-heading">$365</h5>
-                                    </div>
+                              
                                     <div class="subtotal product-total">
                                         <ul class="product-list">
                                             <li>
@@ -129,7 +69,7 @@
 
                                                 </div>
                                                 <div class="price">
-                                                    <h5 class="wrapper-heading">+$0</h5>
+                                                    <h5 class="wrapper-heading">+🪙0</h5>
                                                 </div>
                                             </li>
                                         </ul>
@@ -137,23 +77,23 @@
                                     <hr>
                                     <div class="subtotal product-total">
                                         <h5 class="wrapper-heading">Total</h5>
-                                        <h5 class="wrapper-heading price">$ @Model.TotalProductPrice.ToString("##,##")</h5>
+                                        <h5 class="wrapper-heading price">🪙 @Model.TotalProductPrice</h5>
                                     </div>
                                     <div class="subtotal product-total">
                                         <h5 class="wrapper-heading">Tax</h5>
-                                        <h5 class="wrapper-heading price">$ @Model.TotalTaxPrice.ToString("##,##") </h5>
+                                        <h5 class="wrapper-heading price">🪙 @Model.TotalTaxPrice </h5>
                                     </div>
                                     <div class="subtotal product-total">
                                         <h5 class="wrapper-heading">Dicount</h5>
-                                        <h5 class="wrapper-heading price">$ @Model.TotalDiscount.ToString("##,##")</h5>
+                                        <h5 class="wrapper-heading price">🪙 @Model.TotalDiscount</h5>
                                     </div>
                                     <div class="subtotal total">
                                         <h5 class="wrapper-heading">TOTAL PRİCE</h5>
-                                        <h5 class="wrapper-heading price">$ @Model.TotalPrice.ToString("##,##")</h5>
+                                        <h5 class="wrapper-heading price">🪙 @Model.TotalPrice</h5>
                                     </div>
                                     <div class="subtotal payment-type">
                                         <div class="checkbox-item">
-                                            <input type="radio" id="bank" name="bank">
+                                            <input type="radio" id="paymentBank" name="paymentType" value="Bank">
                                             <div class="bank">
                                                 <h5 class="wrapper-heading">Direct Bank Transfer</h5>
                                                 <p class="paragraph">
@@ -166,27 +106,27 @@
                                             </div>
                                         </div>
                                         <div class="checkbox-item">
-                                            <input type="radio" id="cash" name="bank">
+                                            <input type="radio" id="paymentCash" name="paymentType" value="Cash">
                                             <div class="cash">
                                                 <h5 class="wrapper-heading">Cash on Delivery</h5>
                                             </div>
                                         </div>
                                         <div class="checkbox-item">
-                                            <input type="radio" id="credit" name="bank">
+                                            <input type="radio" id="paymentCard" name="paymentType" value="Card">
                                             <div class="credit">
                                                 <h5 class="wrapper-heading">Credit/Debit Cards or Paypal</h5>
                                             </div>
                                         </div>
                                         <div class="checkbox-item">
-                                            <input type="radio" id="coin" name="bank">
+                                            <input type="radio" id="paymentCoin" name="paymentType" value="Coin">
                                             <div class="credit">
                                                 <h5 class="wrapper-heading">Recycle Coin</h5>
                                             </div>
                                         </div>
                                     </div>
-                                    <a href="#" class="shop-btn">Place Order Now</a>
+                                    <a href="#" class="shop-btn" id="placeOrderBtn">Place Order Now</a>
+
                                 </div>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -194,3 +134,25 @@
         </div>
     </section>
     <!--------------- checkout-section-end---------------->
+
+    <script>
+    // Radio butonlarından herhangi biri seçildiğinde tetiklenecek olan fonksiyon
+    function updateLink() {
+        const placeOrderBtn = document.getElementById('placeOrderBtn');
+        const selectedValue = document.querySelector('input[type="radio"][name="paymentType"]:checked');
+        const idValue = '@Model.ID';
+
+        if (selectedValue) {
+            placeOrderBtn.href = `/pay/${selectedValue.value.toLowerCase()}?id=${idValue}`;
+        } else {
+            placeOrderBtn.href = '#'; // Varsayılan bağlantı
+        }
+    }
+
+    // Radio butonlarından herhangi biri değiştiğinde veya sayfa yüklendiğinde kontrol etmek için dinleyiciler ekle
+    document.addEventListener('DOMContentLoaded', updateLink); // Sayfa yüklendiğinde çalışacak
+    document.querySelectorAll('input[type="radio"][name="paymentType"]').forEach(function (radio) {
+        radio.addEventListener('change', updateLink); // Radio butonlarından herhangi biri değiştiğinde çalışacak
+    });
+
+    </script>

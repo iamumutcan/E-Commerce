@@ -1,48 +1,28 @@
-﻿<!DOCTYPE html>
+﻿<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title </title>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
-
-    <style>
-        /* Özel CSS stilleri buraya eklenebilir */
-    </style>
-</head>
+@Html.Partial("_Head")
 <body>
-    <header>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ml-auto">
-                    @Html.Action("GetMenu", "Home")
-                </ul>
-            </div>
-        </nav>
-    </header>
 
-    <main role="main" class="container mt-4">
-        <section>
-            @RenderBody()
+    @{
+        bool isLoggedIn = ViewBag.IsLogin != null && (bool)ViewBag.IsLogin;
+    }
 
-        </section>
-    </main>
+    @if (isLoggedIn)
+    {
+        @Html.Partial("_HeaderLogin")
+    }
+    else
+    {
+        @Html.Partial("_Header")
+    }
+    @RenderBody()
 
-    <footer class="bg-dark text-light text-center py-3">
-        <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-    </footer>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    @Html.Partial("_Footer")
 
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <!-- Jquery Modell -->
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
-    @RenderSection("script", false)
 </body>
 </html>

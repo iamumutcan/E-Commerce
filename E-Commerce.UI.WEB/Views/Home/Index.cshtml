@@ -6,54 +6,95 @@
     var Islogin = (bool)ViewBag.IsLogin;
 }
 
-@{
-    foreach (var item in Model)
-    {
-        <div class="col-md-4 mb-4">
-            <div class="card">
-                <img src="@item.ImageUrl" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">@item.Name</h5>
-                    <p class="card-text">@item.Description</p>
-                    <p class="card-text"> <b>  @item.Price.ToString("$ ##,##") </b></p>
+<section class="product arrival">
+    <div class="container">
+        <div class="section-title">
+            <h5>NEW ARRIVALS</h5>
+            <a href="product-sidebar.html" class="view">View All</a>
+        </div>
+        <div class="arrival-section">
+            <div class="row g-5">
+                @{
+                    foreach (var item in Model)
+                    {
+                        <div class="col-lg-3 col-sm-6">
+                            <div class="product-wrapper" data-aos="fade-up">
+                                <div class="product-img">
+                                    <img src="@item.ImageUrl" alt="product-img">
+                                </div>
+                                <div class="product-info">
+                                    <div class="product-description">
+                                        <a href="/product/@Regex.Replace(item.Name.ToLower(), @"[^a-z0-9]", "-")/@item.ID" class="product-details">
+                                            @if (item.Name.Length > 60)
+                                            {@item.Name.Substring(0, 60) <span>... </span>}
+                                            else
+                                            {@item.Name}
+                                        </a>
+                                        <div class="price">
+                                            @{if (item.Discount > 0)
+                                                {
+                                                    <span class="price-cut">@item.TotalPriceWithoutDiscount </span>
+                                                    <span class="new-price">🪙 @item.TotalPrice</span>
+                                                }
+                                              else {<span class="new-price">🪙 @item.TotalPrice</span>
+                                                }
+                                            }
 
-                    <a href="/product/@Regex.Replace(item.Name.ToLower(), @"[^a-z0-9]", "-")/@item.ID" class="btn btn-primary">Details</a>
-                    @{if (Islogin)
-                        {
-                            <a href="#" data-pID="@item.ID" class="btn btn-info addBasket">Add To Cart</a>
-                        }
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="product-cart-btn">
+                                    @{if (Islogin)
+                                        {
+                                            <button class="product-btn addBasket" data-productID="@item.ID" data-quantity="1">Add To Cart</button>
+                                        }
+                                    }
+                                </div>
+                            </div>
+                        </div>
                     }
-                </div>
+                }
             </div>
         </div>
-    }
-}
-<div id="jqueryModal" title="Thanks">
-    Your product has been added to the cart
-</div>
-@section script{
-    <script>
-        $(document).ready(function () {
-            $("#jqueryModal").dialog({
-                autoOpen: false,
-                show: {
-                    effect: "blind",
-                    duration: 1000
+    </div>
+</section>
+
+<!-- Your existing HTML content -->
+<!-- ... -->
+
+<div class="notification-bottom-right" style="   display: none;
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        padding: 20px;
+        background-color: #28a745;
+        color: white;
+        border-radius: 5px;
+        z-index: 9999;"></div>
+
+<!-- Your existing JavaScript and jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('.addBasket').click(function (e) {
+            e.preventDefault();
+
+            var productId = $(this).data('productid');
+            var quantity = $(this).data('quantity');
+
+            $.ajax({
+                url: '/Basket/AddItemToCart', // URL to your controller action method
+                type: 'POST',
+                data: { productID: productId, quantity: quantity },
+                success: function (response) {
+                    var mesaj = "Add to cart successful"; // Metin girişinden mesajı al
+                    $(".notification-bottom-right").text(mesaj).fadeIn().delay(2000).fadeOut(); // Mesajı göster, 2 saniye sonra gizle
                 },
-                hide: {
-                    effect: "blind",
-                    duration: 1000
+                error: function (xhr, status, error) {
+                    // Handle errors if any
+                    console.error(xhr.responseText);
                 }
             });
-
-            $(".addBasket").on("click", function () {
-                var pid = $(this).attr("data-pID");
-                $.post("Basket/AddItemToCart?productID=" + pid+"&quantity=1", function (data) {
-                    $("#jqueryModal").dialog("open");
-
-                })
-                return false;
-            });
         });
-    </script>
-}
+    });
+</script>
