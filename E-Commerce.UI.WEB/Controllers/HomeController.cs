@@ -32,7 +32,7 @@ namespace E_Commerce.UI.WEB.Controllers
         [Route("UserLogin")]
         public ActionResult Login(string Email, string Password)
         {
-            var data = db.Users.Where(x => x.Email == Email && x.Password == Password && x.IsActive == true).ToList();
+            var data = db.Users.Where(x => x.Email == Email && x.Password == Password && x.IsActive == true && x.IsDelete == false).ToList();
             if (data.Count() > 0)
             {
                 Session["LoginUserId"] = data.FirstOrDefault().ID;
@@ -70,7 +70,13 @@ namespace E_Commerce.UI.WEB.Controllers
                 return View();
 
             }
-
+        }
+        [Route("Logout")]
+        public ActionResult Logout()
+        {
+            BaseLogout();
+            Session.Clear(); 
+            return Redirect("/UserLogin");
         }
     }
 }

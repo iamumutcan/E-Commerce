@@ -234,3 +234,12 @@
 
 <!--------------- additional-js ---------------->
 <script src="~/Themefiles/assets/js/shopus.js"></script>
+<script>
+    function redirectToSearch() {
+        var searchText = document.getElementById('searchText').value;
+
+        // Sayfayı yönlendir
+        window.location.href = '/Product/' + searchText;
+    }
+
+</script>

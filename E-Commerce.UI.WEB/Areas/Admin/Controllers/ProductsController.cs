@@ -16,7 +16,7 @@ namespace E_Commerce.UI.WEB.Areas.Admin.Controllers
         // GET: Admin/Products
         public ActionResult Index()
         {
-            var products = db.Products.Include(p => p.Category);
+            var products = db.Products.Include(p => p.Category).OrderByDescending(p=>p.ID);
             return View(products.ToList());
         }
 
@@ -94,7 +94,7 @@ namespace E_Commerce.UI.WEB.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (Request.Files.Count > 0)
+                if (Request.Files.Count > 0 && Request.Files[0].ContentLength > 0)
                 {
                     string fileextension = Path.GetExtension(Request.Files[0].FileName);
                     string randomName = Guid.NewGuid().ToString();

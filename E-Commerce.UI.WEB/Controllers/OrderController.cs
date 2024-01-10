@@ -3,7 +3,9 @@ using E_Commerce.Core.Model.Entity;
 using E_Commerce.UI.WEB.Controllers.Base;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.UI.WebControls;
@@ -65,6 +67,20 @@ namespace E_Commerce.UI.WEB.Controllers
                     Quantity = item.Quantity,
                 });
                 db.Baskets.Remove(item);
+                var updateProduct = db.Products.FirstOrDefault(x => x.ID== item.ProductID);
+                if(updateProduct.Stock>=item.Quantity)
+                {
+                    updateProduct.Stock =updateProduct.Stock- item.Quantity;
+                    db.Entry(updateProduct).State = EntityState.Modified;
+                }
+                else
+                {
+                    TempData["PaymentMessage"] = "The product named '" +updateProduct.Name+ "' does not have enough stock";
+                    TempData["Result"] = false;
+                    return RedirectToAction("Index", "Pay");
+
+                }
+
             }
             db.Orders.Add(order);
         
@@ -95,10 +111,18 @@ namespace E_Commerce.UI.WEB.Controllers
         [Route("MyOrder")]
         public ActionResult Index()
         {
-            var data = db.Orders.Include("Status").Include("User").Include("UserAddress").Where(x => x.UserID == LoginUserId).ToList();
+            var data = db.Orders.Include("Status").Include("User").Include("UserAddress").Where(x => x.UserID == LoginUserId).OrderByDescending(x => x.ID).ToList();
             return View(data);
         }
+        public ActionResult OrderCancel(int id)
+        {
+            var data = db.Orders.Find(id);
+            data.StatusID = 17;
+            db.Entry(data).State = EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("Detail", new { id = id });
+        }
 
-  
+
     }
 }

@@ -82,6 +82,10 @@
     <Compile Include="Migrations\202312311219500_update-product.designer.cs">
       <DependentUpon>202312311219500_update-product.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202401092234548_updateUserIsDelte.cs" />
+    <Compile Include="Migrations\202401092234548_updateUserIsDelte.designer.cs">
+      <DependentUpon>202401092234548_updateUserIsDelte.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -104,6 +108,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202312311219500_update-product.resx">
       <DependentUpon>202312311219500_update-product.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202401092234548_updateUserIsDelte.resx">
+      <DependentUpon>202401092234548_updateUserIsDelte.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

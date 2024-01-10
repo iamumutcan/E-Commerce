@@ -25,6 +25,15 @@ namespace E_Commerce.UI.WEB.Controllers.Base
 
             base.Initialize(requestContext);
         }
+        public void BaseLogout()
+        {
+            ViewBag.IsLogin = false; 
+            IsLogin = false; 
+            LoginUserId = 0; 
+            LoginUserWallet = null; 
+            LoginUserEntity = null; 
+        }
+     
     }
 
 }

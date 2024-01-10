@@ -12,6 +12,7 @@ namespace E_Commerce.UI.WEB.Controllers
         [Route("Category/{title}/{id}")]
         public ActionResult Index(string title, int id)
         {
+            ViewBag.IsLogin = this.IsLogin;
             var data = db.Products.Where(x => x.CategoryID == id && x.IsActive == true).ToList();
             ViewBag.category = db.Categories.Where(x => x.ID == id).FirstOrDefault();
             return View(data);

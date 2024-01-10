@@ -1,0 +1,47 @@
+﻿@using User = E_Commerce.Core.Model.Entity.User
+
+
+@{
+
+}
+
+<section class="user-profile footer-padding">
+    <div class="container">
+        <div class="user-profile-section">
+
+            <div class="user-dashboard">
+
+                @Html.Partial("_UserDashboardMenu")
+                <div class="tab-content nav-content" id="v-pills-tabContent" style="flex: 1 0%;">
+                    <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel"
+                         aria-labelledby="v-pills-home-tab" tabindex="0">
+                        <div class="user-profile">
+                            <div class="user-title">
+                                <p class="paragraph">Hello, @((ViewBag.User as User).Name)</p>
+                                <h5 class="heading">Welcome to your Profile </h5>
+                            </div>
+                            <div class="profile-section">
+                                <div class="row g-5">
+                                    <form id="deleteAccountForm" method="post" action="/AccountDelete" enctype="multipart/form-data">
+                                        <button id="deleteButton" class="btn btn-danger" type="button">Hesabımı Sil</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    // Silme butonuna tıklandığında onaylama iletişim kutusu göster
+    document.getElementById('deleteButton').addEventListener('click', function() {
+      if (confirm("Hesabınızı silmek istediğinize emin misiniz? Bu işlem geri alınamaz!")) {
+        // Kullanıcı onaylarsa, formu submit et
+        document.getElementById('deleteAccountForm').submit();
+      }
+    });
+</script>

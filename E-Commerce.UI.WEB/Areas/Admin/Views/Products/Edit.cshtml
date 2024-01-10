@@ -46,13 +46,20 @@
                 @Html.ValidationMessageFor(model => model.Model, "", new { @class = "text-danger" })
             </div>
         </div>
+        @Html.HiddenFor(model => model.ImageUrl)
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.ImageUrl, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.ImageUrl, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.ImageUrl, "", new { @class = "text-danger" })
+        <!-- Eğer mevcut resim varsa ve 100x100 boyutunda gösterilsin -->
+        @if (!string.IsNullOrEmpty(Model.ImageUrl))
+        {
+            <div class="mb-3">
+                <img src="@Model.ImageUrl" alt="Current Image" style="max-width: 100px; max-height: 100px;">
             </div>
+        }
+
+        <!-- Resim güncelleme için input -->
+        <div class="mb-3">
+            <div class="form-label">Image</div>
+            <input type="file" name="imagepath" class="form-control">
         </div>
 
         <div class="form-group">

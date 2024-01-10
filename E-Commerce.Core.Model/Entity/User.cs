@@ -16,6 +16,7 @@ namespace E_Commerce.Core.Model.Entity
         public string WalletAddress { get; set; }
         public bool IsActive { get; set; }
         public bool IsAdmin { get; set; }
+        public bool IsDelete { get; set; }
         public virtual IEnumerable<UserAddress> UserAddress { get; set; }
     
 

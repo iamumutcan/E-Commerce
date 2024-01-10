@@ -17,5 +17,15 @@ namespace E_Commerce.UI.WEB.Controllers
             var product = db.Products.Include("Category").Where(x => x.ID == id).FirstOrDefault();
             return View(product);
         }
+        [Route("Product/{value}")]
+        public ActionResult Search(string value)
+        {
+            ViewBag.IsLogin = this.IsLogin;
+            var data = db.Products.Include("Category").Where(p =>
+              p.Name.Contains(value) ||
+              p.Brand.Contains(value) ||
+              p.Model.Contains(value)).ToList();
+            return View(data);
+        }
     }
 }

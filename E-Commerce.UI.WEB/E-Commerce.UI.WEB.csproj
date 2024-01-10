@@ -1545,6 +1545,10 @@
     <Content Include="Views\Account\Index.cshtml" />
     <Content Include="Views\Order\Chekout.cshtml" />
     <Content Include="Views\Pay\Index.cshtml" />
+    <Content Include="Views\Account\AccountDelete.cshtml" />
+    <Content Include="Views\Home\Logout.cshtml" />
+    <Content Include="Views\Account\AccountUpdate.cshtml" />
+    <Content Include="Views\Product\Search.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -1,9 +1,9 @@
-﻿@model List<E_Commerce.Core.Model.Entity.Product>
+﻿
+@model List<E_Commerce.Core.Model.Entity.Product>
 @using System.Text.RegularExpressions;
 
 @{
     ViewBag.Title = "Index";
-    var category = (E_Commerce.Core.Model.Entity.Category)ViewBag.category;
     var Islogin = (bool)ViewBag.IsLogin;
 
 }
@@ -14,7 +14,7 @@
 <section class="product arrival">
     <div class="container">
         <div class="section-title">
-            <h5>@category.Name</h5>
+            <h5>Products:</h5>
         </div>
         <div class="arrival-section">
             <div class="row g-5">
