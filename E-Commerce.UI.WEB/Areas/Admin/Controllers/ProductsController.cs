@@ -16,7 +16,7 @@ namespace E_Commerce.UI.WEB.Areas.Admin.Controllers
         // GET: Admin/Products
         public ActionResult Index()
         {
-            var products = db.Products.Include(p => p.Category).OrderByDescending(p=>p.ID);
+            var products = db.Products.Include(p => p.Category).OrderByDescending(p => p.ID);
             return View(products.ToList());
         }
 
@@ -53,7 +53,7 @@ namespace E_Commerce.UI.WEB.Areas.Admin.Controllers
                 if (Request.Files.Count > 0)
                 {
                     string fileextension = Path.GetExtension(Request.Files[0].FileName);
-                    string randomName = Guid.NewGuid().ToString(); 
+                    string randomName = Guid.NewGuid().ToString();
                     string folderPath = Server.MapPath("~/Themefiles/assets/images/product/");
                     string filepath = Path.Combine(folderPath, randomName + fileextension);
                     Request.Files[0].SaveAs(filepath);

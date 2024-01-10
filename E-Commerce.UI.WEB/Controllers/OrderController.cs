@@ -5,8 +5,6 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Security.Cryptography;
-using System.Web;
 using System.Web.Mvc;
 using System.Web.UI.WebControls;
 
@@ -15,13 +13,13 @@ namespace E_Commerce.UI.WEB.Controllers
     [UserLoginFilter]
     public class OrderController : UserControllerBase
     {
-        AppDbContext db= new AppDbContext();
+        AppDbContext db = new AppDbContext();
         // GET: Order
         [Route("SelectAddres")]
         public ActionResult AddressList()
         {
 
-            var data =db.UsersAddress.Where(x=>x.UserID == LoginUserId).ToList();
+            var data = db.UsersAddress.Where(x => x.UserID == LoginUserId).ToList();
             return View(data);
         }
         public ActionResult CreateUserAddress()
@@ -41,15 +39,15 @@ namespace E_Commerce.UI.WEB.Controllers
             db.SaveChanges();
             return RedirectToAction("AddressList");
         }
-        
+
         public ActionResult CreateOrder(int id)
         {
-            var basket=db.Baskets.Include("Product").Where(x=>x.UserID==LoginUserId).ToList();
+            var basket = db.Baskets.Include("Product").Where(x => x.UserID == LoginUserId).ToList();
             Order order = new Order();
             order.CreatedDate = DateTime.Now;
             order.CreateUserId = LoginUserId;
             order.UpdateUserId = LoginUserId;
-            order.UserAddressID= id;
+            order.UserAddressID = id;
             order.UserID = LoginUserId;
             order.StatusID = 4;
             order.TotalProductPrice = basket.Sum(x => x.Product.Price * x.Quantity);
@@ -57,7 +55,7 @@ namespace E_Commerce.UI.WEB.Controllers
             order.TotalDiscount = basket.Sum(x => x.Product.Discount * x.Quantity);
             order.TotalPrice = order.TotalProductPrice + order.TotalTaxPrice - order.TotalDiscount;
             order.OrderProducts = new List<OrderProduct>();
-            foreach(var item in basket)
+            foreach (var item in basket)
             {
                 order.OrderProducts.Add(new OrderProduct()
                 {
@@ -67,15 +65,15 @@ namespace E_Commerce.UI.WEB.Controllers
                     Quantity = item.Quantity,
                 });
                 db.Baskets.Remove(item);
-                var updateProduct = db.Products.FirstOrDefault(x => x.ID== item.ProductID);
-                if(updateProduct.Stock>=item.Quantity)
+                var updateProduct = db.Products.FirstOrDefault(x => x.ID == item.ProductID);
+                if (updateProduct.Stock >= item.Quantity)
                 {
-                    updateProduct.Stock =updateProduct.Stock- item.Quantity;
+                    updateProduct.Stock = updateProduct.Stock - item.Quantity;
                     db.Entry(updateProduct).State = EntityState.Modified;
                 }
                 else
                 {
-                    TempData["PaymentMessage"] = "The product named '" +updateProduct.Name+ "' does not have enough stock";
+                    TempData["PaymentMessage"] = "The product named '" + updateProduct.Name + "' does not have enough stock";
                     TempData["Result"] = false;
                     return RedirectToAction("Index", "Pay");
 
@@ -83,20 +81,20 @@ namespace E_Commerce.UI.WEB.Controllers
 
             }
             db.Orders.Add(order);
-        
+
             db.SaveChanges();
             var lastOrder = db.Orders.Where(x => x.UserID == LoginUserId)
                                       .OrderByDescending(x => x.ID)
                                       .FirstOrDefault();
-            return RedirectToAction("Chekout", new {id= lastOrder .ID});
+            return RedirectToAction("Chekout", new { id = lastOrder.ID });
         }
 
         public ActionResult Detail(int id)
         {
-        var data =db.Orders.Include("OrderProducts").
-                            Include("OrderProducts.Product").
-                            Include("Status").
-                            Where(x=> x.ID==id).FirstOrDefault();
+            var data = db.Orders.Include("OrderProducts").
+                                Include("OrderProducts.Product").
+                                Include("Status").
+                                Where(x => x.ID == id).FirstOrDefault();
             return View(data);
         }
         public ActionResult Chekout(int id)

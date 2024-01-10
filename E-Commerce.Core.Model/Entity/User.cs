@@ -1,6 +1,4 @@
-﻿using E_Commerce.DataIntegration.Blockchain;
-using System.Collections.Generic;
-using System.Diagnostics;
+﻿using System.Collections.Generic;
 
 namespace E_Commerce.Core.Model.Entity
 {
@@ -18,7 +16,7 @@ namespace E_Commerce.Core.Model.Entity
         public bool IsAdmin { get; set; }
         public bool IsDelete { get; set; }
         public virtual IEnumerable<UserAddress> UserAddress { get; set; }
-    
+
 
     }
 }

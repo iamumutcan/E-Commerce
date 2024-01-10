@@ -1,3 +1,5 @@
+using E_Commerce.API.Areas.HelpPage.ModelDescriptions;
+using E_Commerce.API.Areas.HelpPage.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -11,8 +13,6 @@ using System.Net.Http.Headers;
 using System.Web.Http;
 using System.Web.Http.Controllers;
 using System.Web.Http.Description;
-using E_Commerce.API.Areas.HelpPage.ModelDescriptions;
-using E_Commerce.API.Areas.HelpPage.Models;
 
 namespace E_Commerce.API.Areas.HelpPage
 {

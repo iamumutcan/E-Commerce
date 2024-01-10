@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace E_Commerce.DataIntegration
 {
@@ -18,10 +14,10 @@ namespace E_Commerce.DataIntegration
     }
     public class Block
     {
-        public string previousHash {  get; set; }
+        public string previousHash { get; set; }
         public string timestamp { get; set; }
         public int nonce { get; set; }
-        public string hash {  get; set; }
+        public string hash { get; set; }
         public List<TransactionBlock> Transactions { get; set; }
         public Block() { Transactions = new List<TransactionBlock>(); }
     }

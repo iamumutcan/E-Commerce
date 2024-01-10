@@ -1,13 +1,8 @@
-﻿using E_Commerce.DataIntegration.Blockchain;
-using E_Commerce.DataIntegration;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Web;
-using System.Web.Mvc;
-using System.Web.UI;
+﻿using E_Commerce.DataIntegration;
+using E_Commerce.DataIntegration.Blockchain;
 using E_Commerce.UI.WEB.Controllers.Base;
+using System.Threading.Tasks;
+using System.Web.Mvc;
 
 namespace E_Commerce.UI.WEB.Controllers
 {

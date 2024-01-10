@@ -2,11 +2,8 @@
 using E_Commerce.DataIntegration;
 using E_Commerce.DataIntegration.Blockchain;
 using E_Commerce.UI.WEB.Controllers.Base;
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Web;
 using System.Web.Mvc;
 
 namespace E_Commerce.UI.WEB.Controllers
@@ -56,7 +53,7 @@ namespace E_Commerce.UI.WEB.Controllers
                 order.StatusID = 4;
             }
             db.SaveChanges();
-            return RedirectToAction("Index");        
+            return RedirectToAction("Index");
 
         }
 

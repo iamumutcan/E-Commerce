@@ -75,7 +75,7 @@ namespace E_Commerce.UI.WEB.Controllers
         public ActionResult Logout()
         {
             BaseLogout();
-            Session.Clear(); 
+            Session.Clear();
             return Redirect("/UserLogin");
         }
     }

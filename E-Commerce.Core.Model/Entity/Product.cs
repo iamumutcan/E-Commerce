@@ -26,7 +26,7 @@
         {
             get
             {
-                decimal totalPriceWithoutDiscount= Price + Tax;
+                decimal totalPriceWithoutDiscount = Price + Tax;
                 return totalPriceWithoutDiscount;
             }
         }

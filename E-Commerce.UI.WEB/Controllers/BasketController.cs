@@ -1,11 +1,8 @@
 ﻿using E_Commerce.Core.Model;
-using E_Commerce.Core.Model.Entity;
 using E_Commerce.UI.WEB.Controllers.Base;
 using System;
-using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace E_Commerce.UI.WEB.Controllers
@@ -67,7 +64,7 @@ namespace E_Commerce.UI.WEB.Controllers
 
             }
 
-            return RedirectToAction("Index"); 
+            return RedirectToAction("Index");
         }
         public ActionResult RemoveItemFromCart(int id)
         {

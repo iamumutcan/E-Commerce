@@ -15,11 +15,11 @@ namespace E_Commerce.UI.WEB.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult Index(string Email, string Password)
         {
-            var data = db.Users.Where(x => x.Email == Email && x.Password == Password && x.IsActive == true && x.IsAdmin == true && x.IsDelete==false).ToList();
+            var data = db.Users.Where(x => x.Email == Email && x.Password == Password && x.IsActive == true && x.IsAdmin == true && x.IsDelete == false).ToList();
             if (data.Count() > 0)
             {
                 Session["AdminLoginUser"] = data.FirstOrDefault();
-                Session["AdminLoginUserId"]= data.FirstOrDefault().ID;
+                Session["AdminLoginUserId"] = data.FirstOrDefault().ID;
                 return Redirect("/admin");
             }
             else { return View(); }

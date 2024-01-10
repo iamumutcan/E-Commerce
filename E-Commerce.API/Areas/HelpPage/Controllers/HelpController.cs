@@ -1,8 +1,8 @@
+using E_Commerce.API.Areas.HelpPage.ModelDescriptions;
+using E_Commerce.API.Areas.HelpPage.Models;
 using System;
 using System.Web.Http;
 using System.Web.Mvc;
-using E_Commerce.API.Areas.HelpPage.ModelDescriptions;
-using E_Commerce.API.Areas.HelpPage.Models;
 
 namespace E_Commerce.API.Areas.HelpPage.Controllers
 {

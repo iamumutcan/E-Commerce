@@ -3,12 +3,9 @@ using E_Commerce.Core.Model.Entity;
 using E_Commerce.DataIntegration.Blockchain;
 using E_Commerce.UI.WEB.Controllers.Base;
 using System;
-using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Net;
 using System.Threading.Tasks;
-using System.Web;
 using System.Web.Mvc;
 
 namespace E_Commerce.UI.WEB.Controllers
@@ -21,7 +18,7 @@ namespace E_Commerce.UI.WEB.Controllers
         public async Task<ActionResult> Index()
         {
             ViewBag.User = LoginUserEntity;
-            ViewBag.OrderCount=db.Orders.Where(x=>x.UserID==LoginUserId).Count();
+            ViewBag.OrderCount = db.Orders.Where(x => x.UserID == LoginUserId).Count();
             ViewBag.Balance = 550055;
             BlockchainHandler blockchainHandler = new BlockchainHandler();
             var balance = await blockchainHandler.GetWalletBalance(this.LoginUserEntity.WalletAddress);
@@ -60,9 +57,9 @@ namespace E_Commerce.UI.WEB.Controllers
         [Route("AccountDelete")]
         public ActionResult ProcessAccountDelete()
         {
-                LoginUserEntity.IsDelete= true;
-                db.Entry(LoginUserEntity).State = EntityState.Modified;
-                db.SaveChanges();
+            LoginUserEntity.IsDelete = true;
+            db.Entry(LoginUserEntity).State = EntityState.Modified;
+            db.SaveChanges();
             return RedirectToAction("Logout", "Home");
         }
     }

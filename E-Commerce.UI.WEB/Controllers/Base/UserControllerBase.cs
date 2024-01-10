@@ -9,14 +9,14 @@ namespace E_Commerce.UI.WEB.Controllers.Base
     {
         public bool IsLogin { get; private set; }
         public int LoginUserId { get; private set; }
-        public string LoginUserWallet {  get; private set; }
+        public string LoginUserWallet { get; private set; }
         public User LoginUserEntity { get; private set; }
         public List<Basket> SessionBasket { get; set; }
         protected override void Initialize(RequestContext requestContext)
         {
             if (requestContext.HttpContext.Session["LoginUserId"] != null)
             {
-                ViewBag.IsLogin=true;
+                ViewBag.IsLogin = true;
                 IsLogin = true;
                 LoginUserId = (int)requestContext.HttpContext.Session["LoginUserId"];
                 LoginUserWallet = (string)requestContext.HttpContext.Session["LoginUserWallet"];
@@ -27,13 +27,13 @@ namespace E_Commerce.UI.WEB.Controllers.Base
         }
         public void BaseLogout()
         {
-            ViewBag.IsLogin = false; 
-            IsLogin = false; 
-            LoginUserId = 0; 
-            LoginUserWallet = null; 
-            LoginUserEntity = null; 
+            ViewBag.IsLogin = false;
+            IsLogin = false;
+            LoginUserId = 0;
+            LoginUserWallet = null;
+            LoginUserEntity = null;
         }
-     
+
     }
 
 }
